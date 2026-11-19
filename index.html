@@ -55,6 +55,7 @@
     <a class="pill" href="#trailer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 11 7-11 7z"/></svg>Trailer</a>
     <a class="pill" href="https://github.com/tower-benchmark/TOWER"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7 4 12l5 5M15 7l5 5-5 5"/></svg>Code</a>
     <a class="pill" href="https://docs.tower-benchmark.com/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h6a2 2 0 0 1 2 2v12a2 2 0 0 0-2-2H4zM20 5h-6a2 2 0 0 0-2 2v12a2 2 0 0 1 2-2h6z"/></svg>Docs</a>
+    <a class="pill" href="https://huggingface.co/datasets/tower-benchmark/TOWER-SimData"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4 7v10l8 4 8-4V7zM4 7l8 4 8-4M12 11v10"/></svg>Dataset</a>
     <a class="pill" href="https://huggingface.co/datasets/tower-benchmark/TOWER-Assets"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4 7v10l8 4 8-4V7zM4 7l8 4 8-4M12 11v10"/></svg>Assets</a>
     <a class="pill" href="https://challenge.tower-benchmark.com/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4h8v5a4 4 0 0 1-8 0zM12 13v4M8 20h8M8 6H5a3 3 0 0 0 3 4M16 6h3a3 3 0 0 1-3 4"/></svg>Challenge</a>
     <a class="pill" href="#citation"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 11h4v6H5zM5 11c0-3 1-5 4-6M14 11h4v6h-4zM14 11c0-3 1-5 4-6"/></svg>BibTeX</a>
@@ -286,10 +287,11 @@
   
   <a href="https://github.com/tower-benchmark/TOWER"><div><h3>Simulation benchmark</h3><p>Open-source evaluation tools and reproducibility resources.</p></div><span>GitHub <span aria-hidden="true">↗</span></span></a>
   <a href="https://docs.tower-benchmark.com/"><div><h3>Documentation</h3><p>Installation, benchmark execution, and evaluation guidance.</p></div><span>Docs <span aria-hidden="true">↗</span></span></a>
+  <a href="https://huggingface.co/datasets/tower-benchmark/TOWER-SimData"><div><h3>Simulation demonstrations</h3><p>600 raw HDF5 episodes across all 12 task configurations, with 50 per configuration.</p></div><span>Hugging Face <span aria-hidden="true">↗</span></span></a>
   <a href="https://huggingface.co/datasets/tower-benchmark/TOWER-Assets"><div><h3>Benchmark assets</h3><p>Assets for the released simulation benchmark.</p></div><span>Hugging Face <span aria-hidden="true">↗</span></span></a>
   <a href="https://challenge.tower-benchmark.com/"><div><h3>TOWER Challenge</h3><p>Explore the challenge website.</p></div><span>Visit <span aria-hidden="true">↗</span></span></a>
  </div>
- <p class="fine release-note">The public repository releases the simulation benchmark. The paper’s demonstration dataset, Real2Sim construction tooling, and real-robot evaluation are not included in that repository.</p>
+ <p class="fine release-note">The public dataset provides 600 raw simulation demonstrations, a subset of the paper’s 12,000 SIM/REAL demonstrations. Model-specific preprocessing is left to users. Simulator assets are available separately; real-world demonstrations are not included in this dataset release.</p>
 
  <div class="citation" id="citation">
   <div class="citation-head"><h2>Citation</h2><button type="button" id="copy-citation" class="pill">Copy BibTeX</button></div>
@@ -307,7 +309,7 @@
 <footer class="footer">
  <div class="wrap footer-inner">
   <a class="footer-brand" href="#top" aria-label="Back to top"><img src="assets/tower-t.png" alt="" width="56" height="56"><span><b>TOWER</b>Benchmarking bimanual manipulation across simulation and reality</span></a>
-  <nav aria-label="Footer"><a href="https://github.com/tower-benchmark/TOWER">Code</a><a href="https://docs.tower-benchmark.com/">Docs</a><a href="#top">Back to top <span aria-hidden="true">↑</span></a></nav>
+  <nav aria-label="Footer"><a href="https://huggingface.co/datasets/tower-benchmark/TOWER-SimData">Dataset</a><a href="https://github.com/tower-benchmark/TOWER">Code</a><a href="https://docs.tower-benchmark.com/">Docs</a><a href="#top">Back to top <span aria-hidden="true">↑</span></a></nav>
  </div>
 </footer>
 <script src="data.js"></script>
