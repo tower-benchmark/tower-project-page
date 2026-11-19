@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TOWER: Benchmarking Bimanual Manipulation across Simulation and Reality</title>
+<meta name="description" content="TOWER is a Jenga-based benchmark for sustained contact and structural change: six bimanual task families, twelve configurations, a Real2Sim simulator, and paired real and simulated evaluation.">
+<meta name="theme-color" content="#ffffff">
+<meta name="color-scheme" content="light">
+<meta property="og:type" content="website">
+<meta property="og:title" content="TOWER: Benchmarking Bimanual Manipulation across Simulation and Reality">
+<meta property="og:description" content="Six Jenga-based task families, twelve configurations, a Real2Sim simulator, and 960 paired evaluation episodes.">
+<meta property="og:image" content="https://tower-benchmark.com/assets/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#abstract">Skip to content</a>
+<header class="nav">
+ <div class="nav-inner">
+  <a class="brand" href="#top" aria-label="TOWER, back to top"><img src="assets/tower-t.png" alt="" width="34" height="34"><span>TOWER</span></a>
+  <nav aria-label="Sections">
+   <a href="#abstract">Abstract</a><a href="#tasks">Tasks</a><a href="#real2sim">Real2Sim</a><a href="#results">Results</a><a href="#citation">Citation</a>
+   <span class="nav-paper" aria-disabled="true">Paper coming soon</span>
+  </nav>
+ </div>
+</header>
+
+<main>
+<section class="title-block" id="top">
+ <div class="wrap">
+  <div class="title-panel">
+   <h1><img class="logo" src="assets/tower-logo.png" alt="TOWER" width="1000" height="285"><span class="sr-only">: </span><span class="title-text">Benchmarking Bimanual Manipulation across Simulation and Reality</span></h1>
+   <p class="authors">Chak-Wing Mak<sup>1,6,*</sup>, Zewen Yang<sup>1,6,*</sup>, Xiaojie Zhang<sup>2,*,†</sup>, Guanyu Zhu<sup>3,6</sup>, Yuhan Rui<sup>4</sup>, Yu-Kai Wang<sup>1</sup>, Zijie Nie<sup>6</sup>, Kai Tang<sup>1</sup>, Kevin Zhang<sup>1,6</sup>, Xiaowei Chi<sup>2,6</sup>, Yinyu Wu<sup>1</sup>, Chuyao Fu<sup>6</sup>, Cheng-Ching Tseng<sup>6</sup>, Kuangzhi Ge<sup>1,6</sup>, Shengjie Gao<sup>5</sup>, Yike Guo<sup>2</sup>, Sirui Han<sup>2,‡</sup>, Shanghang Zhang<sup>1,‡</sup></p>
+   <ul class="affiliations">
+    <li><sup>1</sup>State Key Laboratory of Multimedia Information Processing, School of Computer Science, Peking University</li>
+    <li><sup>2</sup>The Hong Kong University of Science and Technology</li>
+    <li><sup>3</sup>Fudan University</li>
+    <li><sup>4</sup>Shanghai Jiao Tong University</li>
+    <li><sup>5</sup>University of Electronic Science and Technology of China</li>
+    <li><sup>6</sup>Muka Robotics</li>
+   </ul>
+   <p class="notes"><span><sup>*</sup>Equal contribution</span><span><sup>†</sup>Project leader</span><span><sup>‡</sup>Corresponding authors</span></p>
+   <div class="institution-logos" role="group" aria-label="Author institutions">
+    <div class="institution-mark pku-mark"><img src="assets/pku-logo.png" alt="Peking University" title="Peking University"></div>
+    <div class="institution-mark hkust-mark"><img src="assets/hkust-logo.svg" alt="The Hong Kong University of Science and Technology" title="The Hong Kong University of Science and Technology"></div>
+    <div class="institution-mark fudan-mark"><img src="assets/fudan-logo.png" alt="Fudan University" title="Fudan University"></div>
+    <div class="institution-mark sjtu-mark"><img src="assets/sjtu-logo.png" alt="Shanghai Jiao Tong University" title="Shanghai Jiao Tong University"></div>
+    <div class="institution-mark uestc-mark"><img src="assets/uestc-logo.png" alt="University of Electronic Science and Technology of China" title="University of Electronic Science and Technology of China"></div>
+    <div class="institution-mark muka-mark"><img src="assets/muka-logo.png" alt="Muka Robotics" title="Muka Robotics"></div>
+   </div>
+   <div class="links" aria-label="Paper and resources">
+    <span class="pill" aria-disabled="true">Paper coming soon</span>
+    <a class="pill" href="#trailer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 11 7-11 7z"/></svg>Trailer</a>
+    <a class="pill" href="https://github.com/tower-benchmark/TOWER"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7 4 12l5 5M15 7l5 5-5 5"/></svg>Code</a>
+    <a class="pill" href="https://docs.tower-benchmark.com/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h6a2 2 0 0 1 2 2v12a2 2 0 0 0-2-2H4zM20 5h-6a2 2 0 0 0-2 2v12a2 2 0 0 1 2-2h6z"/></svg>Docs</a>
+    <a class="pill" href="https://huggingface.co/datasets/tower-benchmark/TOWER-Assets"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4 7v10l8 4 8-4V7zM4 7l8 4 8-4M12 11v10"/></svg>Assets</a>
+    <a class="pill" href="https://challenge.tower-benchmark.com/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4h8v5a4 4 0 0 1-8 0zM12 13v4M8 20h8M8 6H5a3 3 0 0 0 3 4M16 6h3a3 3 0 0 1-3 4"/></svg>Challenge</a>
+    <a class="pill" href="#citation"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 11h4v6H5zM5 11c0-3 1-5 4-6M14 11h4v6h-4zM14 11c0-3 1-5 4-6"/></svg>BibTeX</a>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="teaser wrap" id="trailer" aria-labelledby="teaser-title">
+ <h2 class="sr-only" id="teaser-title">TOWER project trailer</h2>
+ <figure class="domain-tile">
+  <div class="tile-media wide"><video id="trailer-video" controls playsinline preload="none" poster="assets/tower-trailer-v2-poster.jpg" aria-label="TOWER two-minute project trailer with music" aria-describedby="trailer-caption"><source src="assets/tower-trailer-v2.mp4" type="video/mp4">Your browser does not support embedded video. <a href="assets/tower-trailer-v2.mp4">Watch the TOWER trailer</a>.</video></div>
+  <figcaption id="trailer-caption"><div class="tile-head"><p class="kicker">TOWER · Project trailer · 2 minutes</p><a class="text-link" href="assets/tower-trailer-v2.mp4" download>Download video</a></div>
+  <p>Six task families across simulation and reality, the Real2Sim pipeline, and benchmark findings. On-screen captions and music.</p>
+  <a class="text-link" href="#tasks">Explore each task and its real-world recordings</a></figcaption>
+ </figure>
+</section>
+
+<section class="section wrap" id="abstract">
+ <div class="abstract-grid">
+  <div>
+   <p class="eyebrow">Abstract</p>
+   <h2>Every move changes what comes next.</h2>
+  </div>
+  <p class="abstract">Complex robotic manipulation requires interpreting visual scenes and anticipating how actions change object contacts and structural support. Evaluating these capabilities calls for diverse, long-horizon tasks in which the physical consequences of earlier actions shape subsequent execution. To this end, we introduce <b class="hl">TOWER</b>, a novel Jenga-based benchmark for sustained contact and structural change, comprising six configurable task families involving <b class="hl">bimanual coordination and tool use</b>. Jenga provides repeatable structures in which local manipulations alter the support and stability needed for subsequent actions. A <b class="hl">Real2Sim</b> pipeline builds corresponding simulated environments for scalable evaluation. We evaluate four policy architectures across twelve configurations using separately trained real and simulated policies. <b class="hl">Progress metrics</b> reveal substantial partial completion hidden by binary task success, while taller configurations generally exhibit lower progress. Real–sim evaluation shows <b class="hl">strong progress correlation</b> (Pearson <i>r</i>&nbsp;=&nbsp;0.880) and a normalized MMRV of 0.1217. TOWER provides a unified testbed for studying how policies respond to interaction-induced scene changes and supports systematic policy evaluation across reality and simulation.</p>
+ </div>
+ <dl class="stats" aria-label="Benchmark scale reported in the paper">
+  <div><dt>Task families</dt><dd>6</dd></div>
+  <div><dt>Configurations</dt><dd>12</dd></div>
+  <div><dt>Training demonstrations</dt><dd>12,000</dd></div>
+  <div><dt>Hours of demonstrations</dt><dd>455.7</dd></div>
+  <div><dt>Evaluation episodes</dt><dd>960</dd></div>
+ </dl>
+ <figure class="paper-figure">
+  <a href="assets/fig1-overview.jpg" aria-label="Open Figure 1 at full size"><img src="assets/fig1-overview.jpg" alt="Figure 1 of the paper. (A) Six atomic actions, four key moments of a Task F episode, and how taller towers extend the plan from 8 to 16 operations. (B) Real2Sim stages: scene reconstruction, camera alignment, dynamics alignment, friction calibration. (C) Paired evaluation: SIM versus REAL progress for four policies, Pearson r 0.880, MMRV 0.1217, and matching REAL and SIM failure sequences." width="2000" height="942" loading="lazy"></a>
+  <figcaption><b>Figure 1. Overview of TOWER.</b> (A) Dataset scale and task design. (B) Scene reconstruction, camera alignment, dynamics alignment, and friction calibration. (C) Cross-domain progress correspondence, model comparisons, and representative REAL/SIM sequences.</figcaption>
+ </figure>
+</section>
+
+<section class="section band" id="tasks">
+ <div class="wrap">
+  <div class="section-head">
+   <p class="eyebrow">Task suite</p>
+   <h2>Six task families, two tower heights.</h2>
+   <p>Easy tasks relocate blocks, medium tasks extract or insert, and hard tasks add tool use and reconstruction. Choose a cinematic simulation demo or a real-world recording. Cinematic clips show three layers; real recordings cover both heights.</p>
+  </div>
+  <div class="task-picker" role="group" aria-label="Choose task">
+   <button type="button" data-task="0" aria-pressed="true"><span class="thumb"><img src="assets/cinematic-A.jpg" alt="" width="960" height="720" loading="lazy"></span><span class="tp-letter">A</span><span class="tp-name">Cross Transfer</span><span class="tp-level">Easy</span></button>
+   <button type="button" data-task="1" aria-pressed="false"><span class="thumb"><img src="assets/cinematic-B.jpg" alt="" width="960" height="720" loading="lazy"></span><span class="tp-letter">B</span><span class="tp-name">Two-Block Transfer</span><span class="tp-level">Easy</span></button>
+   <button type="button" data-task="2" aria-pressed="false"><span class="thumb"><img src="assets/cinematic-C.jpg" alt="" width="960" height="720" loading="lazy"></span><span class="tp-letter">C</span><span class="tp-name">Extract and Stack</span><span class="tp-level">Medium</span></button>
+   <button type="button" data-task="3" aria-pressed="false"><span class="thumb"><img src="assets/cinematic-D.jpg" alt="" width="960" height="720" loading="lazy"></span><span class="tp-letter">D</span><span class="tp-name">Lateral Insertion</span><span class="tp-level">Medium</span></button>
+   <button type="button" data-task="4" aria-pressed="false"><span class="thumb"><img src="assets/cinematic-E.jpg" alt="" width="960" height="720" loading="lazy"></span><span class="tp-letter">E</span><span class="tp-name">Layerwise Pushdown</span><span class="tp-level">Hard</span></button>
+   <button type="button" data-task="5" aria-pressed="false"><span class="thumb"><img src="assets/cinematic-F.jpg" alt="" width="960" height="720" loading="lazy"></span><span class="tp-letter">F</span><span class="tp-name">Tool-Assisted Extraction</span><span class="tp-level">Hard</span></button>
+  </div>
+  <div class="task-stage">
+   <div class="task-player">
+    <div class="segmented media-modes" role="group" aria-label="Video type"><button type="button" data-media="cinematic" aria-pressed="true">Cinematic · SIM</button><button type="button" data-media="real" aria-pressed="false">Real world · 4 cameras</button></div>
+    <video id="task-video" class="cinematic" controls playsinline preload="none" poster="assets/cinematic-A.jpg" aria-label="Cross Transfer, 3 layers, cinematic simulation"><source src="assets/cinematic-A-no-footer.mp4" type="video/mp4"></video>
+    <p class="fine" id="task-media-caption">Simulation · 3 layers · scripted demonstration · edited recorded-state replay; speed labeled in each shot.</p>
+   </div>
+   <div class="task-info" aria-live="polite">
+    <div class="task-info-top">
+     <span class="task-letter" id="task-letter" aria-hidden="true">A</span>
+     <div class="segmented" role="group" aria-label="Tower height"><button type="button" data-layer="2" disabled aria-pressed="false">2 layers</button><button type="button" data-layer="3" aria-pressed="true">3 layers</button></div>
+    </div>
+    <p class="task-level" id="task-level">Task A · Easy</p>
+    <h3 id="task-title">Cross Transfer</h3>
+    <p id="task-description">Blocks are transferred one by one to rebuild the cross-oriented tower on a new base.</p>
+    <dl class="task-facts">
+     <div><dt>Planned operations</dt><dd id="task-ops">6 (3 G + 3 P)</dd></div>
+     <div><dt>Operation plan</dt><dd id="task-plan">Per source layer: grasp → place</dd></div>
+     <div><dt>Clip length</dt><dd id="task-duration">0:15</dd></div>
+    </dl>
+    <button type="button" class="text-button" id="task-compare">Compare policies on Task A, 3 layers <span aria-hidden="true">→</span></button>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="section wrap" id="real2sim">
+ <div class="section-head">
+  <p class="eyebrow">Real2Sim</p>
+  <h2>A simulator measured from the physical station.</h2>
+  <p>Scene reconstruction, camera alignment, robot dynamics alignment, and physics alignment build the simulated counterpart used for the shared task suite, with held-out checks for camera and robot-response alignment.</p>
+ </div>
+ <figure class="paper-figure">
+  <a href="assets/fig3-real2sim.jpg" aria-label="Open Figure 3 at full size"><img src="assets/fig3-real2sim.jpg" alt="Figure 3 of the paper, Real2Sim construction: (A) station and block reconstruction into an assembled USD scene, (B) fixed and wrist camera alignment, (C) two-stage CMA-ES robot dynamics alignment with simulated versus recorded joint response, (D) force-gauge friction measurement for Jenga–Jenga and Jenga–PLA contact." width="2000" height="1057" loading="lazy"></a>
+  <figcaption><b>Figure 3. Real2Sim construction.</b> Rendered from the vector figure in the paper source.</figcaption>
+ </figure>
+ <ol class="steps">
+  <li><span>A</span><h3>Scene reconstruction</h3><p>Station CAD, photographs, and measured block dimensions and mass define the scene; an agent-assisted CAD-to-SimReady workflow builds the assets.</p></li>
+  <li><span>B</span><h3>Camera alignment</h3><p>Point-to-plane ICP and silhouette, contour, and depth losses align the static camera view; wrist cameras are calibrated to the gripper from multi-pose silhouettes.</p></li>
+  <li><span>C</span><h3>Dynamics alignment</h3><p>Two-stage CMA-ES fits response parameters, command delay, and PD gains. Held-out position RMSE falls by 28.0% and 18.5% (left and back arms); velocity RMSE by 45.2% and 51.1%.</p></li>
+  <li><span>D</span><h3>Physics alignment</h3><p>A robot-held force gauge measures breakaway and sliding friction. Block coefficients of 0.551 static and 0.263 dynamic are applied in SIM.</p></li>
+ </ol>
+</section>
+
+<section class="section band" id="results">
+ <div class="wrap">
+  <div class="section-head">
+   <p class="eyebrow">Evaluation</p>
+   <h2>Look beyond the final outcome.</h2>
+   <p>Two VLAs (π<sub>0.5</sub>, StarVLA-α) and two WAMs (Fast-WAM, OpenWAM) are trained separately on REAL and SIM demonstrations and evaluated in their own domain, with matched architectures, tasks, and scoring. Each setting runs ten episodes per domain: 960 episodes in total.</p>
+  </div>
+  <dl class="metrics">
+   <div><dt>TSR <span>↑</span></dt><dd>Task success rate: all prescribed operations completed with a stable final arrangement.</dd></div>
+   <div><dt>LHPR <span>↑</span></dt><dd>Long-horizon progress rate: successful planned operations divided by planned operations.</dd></div>
+   <div><dt>ODR <span>↓</span></dt><dd>Operation disturbance rate: disturbed non-target blocks per counted step; can exceed one.</dd></div>
+   <div><dt>GSR · PSR <span>↑</span></dt><dd>Success rates of the planned G (grasp or interaction) and P (place or terminal) operations.</dd></div>
+  </dl>
+  
+
+  <div class="findings">
+   <article>
+    <p class="finding-no">Finding 1</p>
+    <h3>Progress reveals partial completion.</h3>
+    <p>The 31 settings with no successful episode still span <strong>11.9–77.5% LHPR</strong>. Fast-WAM completes 3.1 of four operations on average on REAL Task D (3 layers) while failing all ten episodes.</p>
+    <button type="button" class="text-button" data-show="partial">Show in the explorer <span aria-hidden="true">→</span></button>
+   </article>
+   <article>
+    <p class="finding-no">Finding 2</p>
+    <h3>Taller towers lower completion.</h3>
+    <p>Mean LHPR falls from <strong>79.62% to 63.19%</strong> from two to three layers, with decreases in five of six tasks. B, E, and F drop by 27.50, 33.54, and 28.59 points.</p>
+    <button type="button" class="text-button" data-show="height">Compare heights <span aria-hidden="true">→</span></button>
+   </article>
+   <article>
+    <p class="finding-no">Finding 3</p>
+    <h3>SIM and REAL progress correspond.</h3>
+    <p>Across 48 paired settings, <strong>Pearson <i>r</i> = 0.880</strong> with a mean absolute gap of 0.994 successful operations per episode; normalized MMRV is 0.1217.</p>
+    <button type="button" class="text-button" data-show="correspondence">Explore the correspondence <span aria-hidden="true">→</span></button>
+   </article>
+  </div>
+
+  <div class="chart-card" id="explorer">
+   <div class="chart-head">
+    <div>
+     <h3>Results explorer</h3>
+     <p class="fine">Every policy on every task. Values from Appendix Tables 17–18; each mark is a ten-episode result.</p>
+    </div>
+   </div>
+   <div class="controls" aria-label="Explorer controls">
+    <div class="control"><span class="control-label" id="metric-label">Metric</span><div class="segmented" role="group" aria-labelledby="metric-label">
+     <button type="button" data-metric="LHPR" aria-pressed="true">LHPR</button><button type="button" data-metric="TSR" aria-pressed="false">TSR</button><button type="button" data-metric="ODR" aria-pressed="false">ODR</button><button type="button" data-metric="GSR" aria-pressed="false">GSR</button><button type="button" data-metric="PSR" aria-pressed="false">PSR</button>
+    </div></div>
+    <div class="control"><span class="control-label" id="mode-label">Compare</span><div class="segmented" role="group" aria-labelledby="mode-label">
+     <button type="button" data-mode="domain" aria-pressed="true">SIM vs REAL</button><button type="button" data-mode="height" aria-pressed="false">2 vs 3 layers</button>
+    </div></div>
+    <div class="control" id="height-control"><span class="control-label" id="height-label">Height</span><div class="segmented" role="group" aria-labelledby="height-label">
+     <button type="button" data-ex-layer="2" aria-pressed="false">2 layers</button><button type="button" data-ex-layer="3" aria-pressed="true">3 layers</button>
+    </div></div>
+    <div class="control" id="domain-control" hidden><span class="control-label" id="domain-label">Domain</span><div class="segmented" role="group" aria-labelledby="domain-label">
+     <button type="button" data-ex-domain="sim" aria-pressed="false">SIM</button><button type="button" data-ex-domain="real" aria-pressed="true">REAL</button>
+    </div></div>
+   </div>
+   <div class="legend" id="explorer-legend" aria-hidden="true"></div>
+   <p class="chart-summary" id="explorer-summary" aria-live="polite"></p>
+   <p class="sr-only" id="explorer-live" aria-live="polite"></p>
+   <div class="chart" id="explorer-chart" tabindex="0" role="group" aria-roledescription="chart" aria-label="Results explorer chart. Use the arrow keys to move between rows." aria-describedby="explorer-summary"></div>
+   <noscript><p class="fine">The interactive chart needs JavaScript. All values are in Appendix Tables 17–20 of the forthcoming paper.</p></noscript>
+   <details class="data-table"><summary>Show the data table</summary><div id="explorer-table"></div></details>
+  </div>
+
+  <div class="chart-card" id="correspondence">
+   <div class="chart-head">
+    <div>
+     <h3>SIM–REAL correspondence</h3>
+     <p class="fine">Mean successful operations per episode in each domain for the 48 paired settings: the coordinates of Figure 4, from Appendix Tables 19–20.</p>
+    </div>
+    <div class="segmented" role="group" aria-label="Figure view"><button type="button" data-view="interactive" aria-pressed="true">Interactive</button><button type="button" data-view="paper" aria-pressed="false">Paper figure</button></div>
+   </div>
+   <div class="corr-grid">
+    <div class="corr-main">
+     <div class="controls" aria-label="Correspondence filters">
+      <div class="control"><span class="control-label" id="policy-label">Policies</span><div class="chips" role="group" aria-labelledby="policy-label" id="policy-chips"></div></div>
+      <div class="control"><span class="control-label" id="scatter-height-label">Height</span><div class="segmented" role="group" aria-labelledby="scatter-height-label">
+       <button type="button" data-sc-layer="all" aria-pressed="true">Both</button><button type="button" data-sc-layer="2" aria-pressed="false">2 layers</button><button type="button" data-sc-layer="3" aria-pressed="false">3 layers</button>
+      </div></div>
+     </div>
+     <p class="chart-summary" id="scatter-summary" aria-live="polite"></p>
+     <p class="sr-only" id="scatter-live" aria-live="polite"></p>
+     <div class="chart scatter" id="scatter-chart" tabindex="0" role="group" aria-roledescription="chart" aria-label="SIM versus REAL scatter plot. Use the arrow keys to move between points." aria-describedby="scatter-summary"></div>
+     <figure class="paper-view" id="paper-view" hidden>
+      <img src="assets/fig4-correlation.png" alt="Figure 4 of the paper: four panels of REAL versus SIM progress in steps, one per policy, with twelve task-layer points each and a dashed equality line. Pearson r and MMRV contribution: pi 0.5, 0.928 and 0.0910; Fast-WAM, 0.907 and 0.1014; StarVLA-alpha, 0.917 and 0.1361; OpenWAM, 0.855 and 0.1583." width="1400" height="1273" loading="lazy">
+      <figcaption><b>Figure 4. SIM–REAL progress by policy.</b> Rendered from the vector figure in the paper source.</figcaption>
+     </figure>
+     <noscript><img class="noscript-figure" src="assets/fig4-correlation.png" alt="Figure 4 of the paper: SIM–REAL progress by policy." width="1400" height="1273"></noscript>
+    </div>
+    <aside class="corr-side" aria-label="Reported statistics">
+     <div class="big-stats">
+      <div><span>Pearson <i>r</i>, 48 pairs</span><strong>0.880</strong></div>
+      <div><span>Normalized MMRV</span><strong>0.1217</strong></div>
+      <div><span>Mean absolute gap</span><strong>0.994</strong><em>successful operations per episode</em></div>
+     </div>
+     <table class="mini-table" id="policy-stats">
+      <caption>Per policy, as reported in Figure 4</caption>
+      <thead><tr><th scope="col">Policy</th><th scope="col">Pearson <i>r</i></th><th scope="col">MMRV contrib.</th></tr></thead>
+      <tbody>
+       <tr data-policy="pi05"><th scope="row"><i class="glyph" data-shape="circle" aria-hidden="true"></i>π<sub>0.5</sub></th><td>0.928</td><td>0.0910</td></tr>
+       <tr data-policy="starvla"><th scope="row"><i class="glyph" data-shape="triangle" aria-hidden="true"></i>StarVLA-α</th><td>0.917</td><td>0.1361</td></tr>
+       <tr data-policy="openwam"><th scope="row"><i class="glyph" data-shape="diamond" aria-hidden="true"></i>OpenWAM</th><td>0.855</td><td>0.1583</td></tr>
+       <tr data-policy="fastwam"><th scope="row"><i class="glyph" data-shape="square" aria-hidden="true"></i>Fast-WAM</th><td>0.907</td><td>0.1014</td></tr>
+      </tbody>
+     </table>
+     <table class="mini-table">
+      <caption>Model-level ODR ↓, Table 2 (ranks SIM → REAL)</caption>
+      <thead><tr><th scope="col">Policy</th><th scope="col">SIM</th><th scope="col">REAL</th><th scope="col">Rank</th></tr></thead>
+      <tbody>
+       <tr><th scope="row">OpenWAM</th><td>0.386</td><td><b>0.296</b></td><td>2 → 1</td></tr>
+       <tr><th scope="row">StarVLA-α</th><td><b>0.369</b></td><td>0.428</td><td>1 → 2</td></tr>
+       <tr><th scope="row">Fast-WAM</th><td>0.502</td><td>0.493</td><td>3 → 3</td></tr>
+       <tr><th scope="row">π<sub>0.5</sub></th><td>0.851</td><td>0.556</td><td>4 → 4</td></tr>
+      </tbody>
+     </table>
+     <p class="fine">Policies are trained and evaluated separately in each domain. Correlated progress describes aggregate correspondence; it does not imply equal performance or zero-shot transfer.</p>
+     <p class="fine">Full SIM–REAL analysis will be available in the paper.</p>
+    </aside>
+   </div>
+   <details class="data-table"><summary>Show the data table</summary><div id="scatter-table"></div></details>
+  </div>
+ </div>
+</section>
+
+<section class="section wrap" id="resources">
+ <div class="section-head">
+  <p class="eyebrow">Resources</p>
+  <h2>Build on TOWER.</h2>
+ </div>
+ <div class="resource-list">
+  
+  <a href="https://github.com/tower-benchmark/TOWER"><div><h3>Simulation benchmark</h3><p>Open-source evaluation tools and reproducibility resources.</p></div><span>GitHub <span aria-hidden="true">↗</span></span></a>
+  <a href="https://docs.tower-benchmark.com/"><div><h3>Documentation</h3><p>Installation, benchmark execution, and evaluation guidance.</p></div><span>Docs <span aria-hidden="true">↗</span></span></a>
+  <a href="https://huggingface.co/datasets/tower-benchmark/TOWER-Assets"><div><h3>Benchmark assets</h3><p>Assets for the released simulation benchmark.</p></div><span>Hugging Face <span aria-hidden="true">↗</span></span></a>
+  <a href="https://challenge.tower-benchmark.com/"><div><h3>TOWER Challenge</h3><p>Explore the challenge website.</p></div><span>Visit <span aria-hidden="true">↗</span></span></a>
+ </div>
+ <p class="fine release-note">The public repository releases the simulation benchmark. The paper’s demonstration dataset, Real2Sim construction tooling, and real-robot evaluation are not included in that repository.</p>
+
+ <div class="citation" id="citation">
+  <div class="citation-head"><h2>Citation</h2><button type="button" id="copy-citation" class="pill">Copy BibTeX</button></div>
+  <pre><code id="citation-text">@misc{tower2026,
+  title = {TOWER: Benchmarking Bimanual Manipulation across Simulation and Reality},
+  author = {Mak, Chak-Wing and Yang, Zewen and Zhang, Xiaojie and Zhu, Guanyu and Rui, Yuhan and Wang, Yu-Kai and Nie, Zijie and Tang, Kai and Zhang, Kevin and Chi, Xiaowei and Wu, Yinyu and Fu, Chuyao and Tseng, Cheng-Ching and Ge, Kuangzhi and Gao, Shengjie and Guo, Yike and Han, Sirui and Zhang, Shanghang},
+  year = {2026},
+  url = {https://tower-benchmark.com}
+}</code></pre>
+  <p id="copy-status" aria-live="polite"></p>
+ </div>
+</section>
+</main>
+
+<footer class="footer">
+ <div class="wrap footer-inner">
+  <a class="footer-brand" href="#top" aria-label="Back to top"><img src="assets/tower-t.png" alt="" width="56" height="56"><span><b>TOWER</b>Benchmarking bimanual manipulation across simulation and reality</span></a>
+  <nav aria-label="Footer"><a href="https://github.com/tower-benchmark/TOWER">Code</a><a href="https://docs.tower-benchmark.com/">Docs</a><a href="#top">Back to top <span aria-hidden="true">↑</span></a></nav>
+ </div>
+</footer>
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
