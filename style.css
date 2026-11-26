@@ -142,7 +142,7 @@ sup{font-size:.68em;line-height:0}
 .paper-figure figcaption b,.paper-view figcaption b{color:var(--ink)}
 
 /* task gallery */
-.task-picker{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.task-picker{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}
 .task-picker button{display:grid;grid-template-columns:auto 1fr;grid-template-areas:"thumb thumb" "letter level" "name name";align-items:center;gap:2px 8px;text-align:left;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 8px 12px;transition:border-color .15s,box-shadow .15s}
 .task-picker button:hover{border-color:#B9C6D4}
 .task-picker button[aria-pressed=true]{border-color:var(--blue);box-shadow:inset 0 0 0 1px var(--blue)}
