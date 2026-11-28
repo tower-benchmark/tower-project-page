@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/assets/favicon.png" type="image/png" /><link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TOWER — Presentation Slides (EN / 简体中文)</title>
+    <meta name="description" content="Interactive English and Simplified Chinese presentation slides for TOWER." />
+    <meta property="og:title" content="TOWER — Presentation Slides (EN / 简体中文)" />
+    <meta property="og:description" content="Interactive English and Simplified Chinese presentation slides for TOWER." />
+    <meta property="og:image" content="https://tower-benchmark.com/assets/og-image.jpg" />
+    <style>html{background-color:oklch(99% 0 0)}html.dark{background-color:oklch(14.5% 0 0)}html[data-translucent]{background-color:#0000}</style>
+    <script>
+      // Apply the stored theme before first paint; next-themes only runs
+      // after the bundle loads, which flashes white for dark-mode users.
+      let stored = null;
+      try {
+        stored = localStorage.getItem('theme');
+      } catch (_) {}
+      const dark =
+        stored === 'dark' ||
+        (stored !== 'light' && matchMedia('(prefers-color-scheme: dark)').matches);
+      document.documentElement.classList.toggle('dark', dark);
+      document.documentElement.style.colorScheme = dark ? 'dark' : 'light';
+      if (window.openSlideDesktop) {
+        document.documentElement.dataset.shell = 'desktop';
+        if (window.openSlideDesktop.translucent) document.documentElement.dataset.translucent = '';
+      }
+    </script>
+    <script type="module" crossorigin src="/slides/assets/index-BjIc7Y2s.js"></script>
+    <link rel="stylesheet" crossorigin href="/slides/assets/index-BGSTCJQl.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
